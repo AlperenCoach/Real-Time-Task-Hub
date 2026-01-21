@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { getTasks, createTask } from './src/api';
 
@@ -46,7 +46,7 @@ export default function App() {
       <StatusBar style="auto" />
       
       <View style={styles.header}>
-        <Text style={styles.title}>Task Hub</Text>
+        <Image source={require('./src/assets/taskhublogo.png')} style={styles.logo} />
         <Text style={styles.subtitle}>Görevler ({tasks.length})</Text>
       </View>
 
@@ -85,6 +85,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderBottomWidth: 1,
     borderBottomColor: '#e0e0e0',
+    alignItems: 'center',
+  },
+  logo: {
+    width: 60,
+    height: 60,
+    resizeMode: 'contain',
+    marginBottom: 10,
+    alignSelf: 'left',
   },
   title: {
     fontSize: 32,
