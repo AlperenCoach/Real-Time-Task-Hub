@@ -12,6 +12,8 @@ namespace RT_API.Models
         public string? description { get; set; }
         public bool status { get; set; }
         public DateTime createdat { get; set; } = DateTime.UtcNow;
+        public string? day { get; set; } // Mon, Tue, Wed, Thu, Fri, Sat, Sun
+        public int completedallTasks { get; set; } = 0;
 
 
 

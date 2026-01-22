@@ -1,9 +1,15 @@
-using Microsoft.EntityFrameworkCore; // Bu sat�r� ekle
-using RT_API; // AppDbContext hangi namespace alt�ndaysa onu ekle
+using Microsoft.EntityFrameworkCore; // Bu satırı ekle
+using RT_API; // AppDbContext hangi namespace altındaysa onu ekle
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. Veritaban� Ba�lant�s�n� Kaydet (BURAYI EKLED�K)
+// Kestrel'i tüm network interface'lerinde dinlemesi için yapılandır
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5086); // Tüm IP adreslerinde 5086 portunu dinle
+});
+
+// 1. Veritabanı Bağlantısını Kaydet (BURAYI EKLEDİK)
 builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = "localhost:6379";
@@ -37,7 +43,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("AllowAll");
 
-app.UseHttpsRedirection();
+// Development için HTTPS redirection'ı devre dışı bırak
+// app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

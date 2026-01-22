@@ -15,6 +15,7 @@ namespace RT_API
         {
         }
         public DbSet<TaskItem> tasks { get; set; } = null!;
+        public DbSet<TaskCounter> taskCounter { get; set; } = null!;
     
     }
 }
